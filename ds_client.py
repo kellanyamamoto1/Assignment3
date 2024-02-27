@@ -6,6 +6,11 @@
 # EMAIL
 # STUDENT ID
 
+from ds_protocol import extract_json
+import socket
+import time
+import json
+
 def send(server:str, port:int, username:str, password:str, message:str, bio:str=None):
   '''
   The send function joins a ds server and sends a message, bio, or both
@@ -17,5 +22,22 @@ def send(server:str, port:int, username:str, password:str, message:str, bio:str=
   :param message: The message to be sent to the server.
   :param bio: Optional, a bio for the user.
   '''
-  #TODO: return either True or False depending on results of required operation
-  return 
+  resp = join_server(server, port, username, password)
+
+  if resp.type == 'error':
+    print('Error')
+    return False
+
+  token = resp.token
+
+  if message:
+    post = {'token': token, "post": {"entry": message, "timestamp": time.time()}}
+    post_string = json.dumps(post)
+
+    with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as client:
+      client.connect((server, port))
+      send = client.makefile('w')
+      recv - client. makefile('r')
+
+      
+
