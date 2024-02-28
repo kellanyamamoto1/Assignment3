@@ -102,8 +102,8 @@ def post_entry():
         message = input("Enter message to post: ")
 
         # Replace these values with server IP address and port
-        server = dspserver
-        port = 8080
+        server = "168.235.86.101"
+        port = "3021"
 
         success = ds_client.send(server, port, username, password, message, bio)
         if success:
