@@ -30,3 +30,4 @@ def extract_json(json_msg:str) -> DataTuple:
     print("Json cannot be decoded.")
 
   return DataTuple(type=response_type, message=response_message,token=response_token)
+ 

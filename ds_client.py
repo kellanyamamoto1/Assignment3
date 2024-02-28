@@ -39,5 +39,53 @@ def send(server:str, port:int, username:str, password:str, message:str, bio:str=
       send = client.makefile('w')
       recv - client. makefile('r')
 
-      
+      send.write(post_string + '\r\n')
+      send.flush
+
+      response = recv.readline()
+      resp = extract_json(response)
+      print(resp.message)
+
+    if bio:
+      bio = {'token': token, "bio": {"entry": bio, "timestamp": time.time()}}
+
+      bio_string = json.dumps(bio)
+
+      with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as client:
+        client.connect((server, port))
+        end = client.makefile('w')
+        recv - client. makefile('r')
+
+        send.write(post_string + '\r\n')
+        send.flush
+
+        response = recv.readline()
+        resp = extract_json(response)
+        if resp.type == 'error':
+          print(resp.message)
+          return False
+  return True
+
+def join_server(sever, port, username, password):
+  data = {"join": {"username": username, "password": password, "token": ''}}
+  json_string = json.dumps(data)
+
+  with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as client:
+    client.connect((server, port))
+    end = client.makefile('w')
+    recv - client. makefile('r')
+
+    send.write(post_string + '\r\n')
+    send.flush
+
+    response = recv.readline()
+    resp = extract_json(response)
+    print(resp.message)
+
+  return resp
+
+if __name__ == "__main__":
+  join_server()
+  
+          
 
