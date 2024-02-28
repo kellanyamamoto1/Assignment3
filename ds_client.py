@@ -2,14 +2,15 @@
 
 # Replace the following placeholders with your information.
 
-# NAME
-# EMAIL
-# STUDENT ID
+# Kellan 
+# kellany@uci.edu
+# 28388886
 
 from ds_protocol import extract_json
 import socket
 import time
 import json
+from a3 import *
 
 def send(server:str, port:int, username:str, password:str, message:str, bio:str=None):
   '''
@@ -80,7 +81,7 @@ def join_server(sever, port, username, password):
 
     response = recv.readline()
     resp = extract_json(response)
-    print(resp.message)
+    print(resp.message) 
 
   return resp
 
